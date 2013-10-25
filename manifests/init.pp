@@ -122,6 +122,22 @@ class mongodb (
     ensure => $ensure_package,
   }
 
+  file { $real_dbpath:
+    ensure  => directory,
+    owner   => $mongo_user,
+    group   => $mongo_group,
+    mode    => '0755',
+    require => Package['mongodb-10gen']
+  }
+
+  file { $logpath_dir:
+    ensure  => directory,
+    owner   => $mongo_user,
+    group   => $mongo_group,
+    mode    => '0755',
+    require => Package['mongodb-10gen']
+  }
+
   file { '/etc/mongod.conf':
     content => template('mongodb/mongod.conf.erb'),
     owner   => 'root',
