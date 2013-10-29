@@ -6,6 +6,13 @@ class mongodb::params{
       $package = 'mongodb-server'
       $service = 'mongod'
       $pkg_10gen = 'mongo-10gen-server'
+
+      $mongo_user_10gen = 'mongod'
+      $mongo_group_10gen = 'mongod'
+      $dbpath_10gen = '/var/lib/mongo/'
+      $logpath_10gen = '/var/log/mongo/mongod.log'
+
+      $config_path_10gen = '/etc/mongod.conf'
     }
     'debian': {
       $locations = {
@@ -20,6 +27,13 @@ class mongodb::params{
       $package = 'mongodb'
       $service = 'mongodb'
       $pkg_10gen = 'mongodb-10gen'
+
+      $mongo_user_10gen = 'mongodb'
+      $mongo_group_10gen = 'mongodb'
+      $dbpath_10gen = '/var/lib/mongodb/'
+      $logpath_10gen = '/var/log/mongodb/mongodb.log'
+
+      $config_path_10gen = '/etc/mongodb.conf'
     }
     default: {
       fail ("mongodb: ${::operatingsystem} is not supported.")
@@ -28,13 +42,8 @@ class mongodb::params{
 
   $mongo_user_os = 'mongodb'
   $mongo_group_os = 'mongodb'
-  $mongo_user_10gen = 'mongod'
-  $mongo_group_10gen = 'mongod'
 
   $dbpath_os = '/var/lib/mongodb/'
-  $dbpath_10gen = '/var/lib/mongo/'
 
   $logpath_os = '/var/log/mongodb/mongodb.log'
-  $logpath_10gen = '/var/log/mongo/mongod.log'
-
 }
