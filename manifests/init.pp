@@ -34,6 +34,7 @@ class mongodb (
   $init            = $mongodb::params::init,
   $location        = '',
   $packagename     = undef,
+  $version         = installed,
   $servicename     = $mongodb::params::service,
   $logpath         = undef,
   $logappend       = true,
@@ -112,7 +113,7 @@ class mongodb (
 
   package { 'mongodb-10gen':
     name   => $package,
-    ensure => installed,
+    ensure => $version,
   }
 
   file { $real_dbpath:
